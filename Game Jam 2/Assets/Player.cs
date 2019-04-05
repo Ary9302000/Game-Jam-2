@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     public static int woodValue = 0;
     public static int stoneValue = 0;
     public static int foodValue = 0;
+    public int prepDuration;
+    public int winterDuration;
+    public bool Winter;
+    public GameObject house;
+    public GameObject storage;
 
     // Start is called before the first frame update
     void Start()

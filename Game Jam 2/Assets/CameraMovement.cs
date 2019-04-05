@@ -7,10 +7,7 @@ public class CameraMovement : MonoBehaviour
 
     public float boundX;
     public float boundY;
-
     private Vector2 mousePos;
-    private Vector2 desiredPosition;
-
     float speed = 0.1f;
 
     // Use this for initialization
@@ -42,5 +39,6 @@ public class CameraMovement : MonoBehaviour
         {
             transform.position -= new Vector3(0.0f, 0.0f, speed);
         }
+        transform.Translate(0, 0, Input.GetAxis("Mouse ScrollWheel") * 5);
     }
 }
