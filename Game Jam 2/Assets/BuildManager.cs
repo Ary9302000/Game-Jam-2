@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildManager : MonoBehaviour
+public class BuildManager : Player
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -15,4 +15,13 @@ public class BuildManager : MonoBehaviour
     {
         
     }
+
+    public void CreateBuilding(GameObject gameObject)
+    {
+        clone = gameObject;
+        clone.SetActive(true);
+        building = true;
+    }
+
+
 }

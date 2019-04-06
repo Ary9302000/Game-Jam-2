@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 10141964}
   m_Layer: 0
   m_Name: Cottage
-  m_TagString: Untagged
+  m_TagString: Cottage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 183359635}
   m_Layer: 0
   m_Name: Villager
-  m_TagString: Untagged
+  m_TagString: Villager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -517,6 +517,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425c3eeff1c35bb48b56c69e61e5d15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  consumptionRate: 10
+  prepDuration: 0
+  winterDuration: 0
+  Winter: 0
+  clone: {fileID: 0}
+  storage: {fileID: 0}
+  building: 0
 --- !u!1001 &269014805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -798,6 +805,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669cd80b36bfa2244a0c811da10aafaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  consumptionRate: 10
+  prepDuration: 0
+  winterDuration: 0
+  Winter: 0
+  clone: {fileID: 0}
+  storage: {fileID: 0}
+  building: 0
 --- !u!1001 &590554246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1092,7 +1106,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 806193381}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 241902720}
+        m_MethodName: CreateBuilding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1602593705}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &806193381
@@ -1285,7 +1310,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1090288658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1090288658
@@ -1673,8 +1709,8 @@ GameObject:
   - component: {fileID: 1602593708}
   - component: {fileID: 1602593707}
   m_Layer: 0
-  m_Name: Cylinder
-  m_TagString: Untagged
+  m_Name: Storehouse
+  m_TagString: Storehouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2041,7 +2077,7 @@ GameObject:
   - component: {fileID: 1681453485}
   m_Layer: 0
   m_Name: Town Hall
-  m_TagString: Untagged
+  m_TagString: Town Hall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2197,7 +2233,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1684095466}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 241902720}
+        m_MethodName: CreateBuilding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 10141962}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1684095466

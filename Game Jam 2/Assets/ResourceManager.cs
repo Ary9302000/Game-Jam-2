@@ -7,16 +7,23 @@ public class ResourceManager : Player
 {
     public static int resourceValue = 0;
     public Text text;
-    void Update()
+    private void Start()
     {
-        text.text = resourceValue.ToString();
+        text.text = "0";
     }
-    public static void AddResource(int value)
+    public void ChangeWood(int value)
     {
-        resourceValue += value;
+        woodValue += value;
+        text.text = woodValue.ToString();
     }
-    public static void RemoveResource(int value)
+    public void ChangeFood(int value)
     {
-        resourceValue -= value;
+        foodValue += value;
+        text.text = foodValue.ToString();
+    }
+    public void ChangeStone(int value)
+    {
+        stoneValue += value;
+        text.text = stoneValue.ToString();
     }
 }

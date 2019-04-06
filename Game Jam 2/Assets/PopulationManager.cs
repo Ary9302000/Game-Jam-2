@@ -11,13 +11,4 @@ public class PopulationManager : Player
     {
         text.text = populationValue.ToString() + "/" + populationCapacity.ToString();
     }
-    public static void ChangePopulation(int value)
-    {
-        populationValue += value;
-    }
-    public static void ChangePopulationCap(int value)
-    {
-        populationCapacity += value;
-    }
-
 }
