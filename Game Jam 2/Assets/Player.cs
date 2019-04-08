@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,17 @@ public class Player : MonoBehaviour
         resourceDisplays[1].text = stoneValue.ToString();
         resourceDisplays[2].text = foodValue.ToString();
         resourceDisplays[3].text = populationValue.ToString() + "/" + populationCapacity.ToString();
+        int i = 5;
+        while (i > 0)
+        {
+            Spawn();
+            i--;
+        }
+    }
+
+    private void Spawn()
+    {
+        Instantiate(GameObject.FindGameObjectWithTag("Villager"), GameObject.FindGameObjectWithTag("Town Hall").transform);
     }
 
     // Update is called once per frame
@@ -45,11 +57,30 @@ public class Player : MonoBehaviour
             {
                 Place(clone);
                 Debug.Log("Placing");
-            } else if (Input.GetMouseButtonDown(1))
+            }
+            else if (Input.GetMouseButtonDown(1))
             {
                 building = false;
                 clone.SetActive(false);
                 Debug.Log("Cancel");
+            }
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 temp;
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100f, 9))
+            {
+                temp = hit.point;
+            }
+            if(hit.collider.tag == "Villager")
+            {
+//                Select(hit.collider.gameObject);
+            }
+            else
+            {
+                Debug.Log(hit.collider.name);
             }
         }
     }
