@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 10141966}
   - component: {fileID: 10141965}
   - component: {fileID: 10141964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cottage
   m_TagString: Cottage
   m_Icon: {fileID: 0}
@@ -517,13 +517,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425c3eeff1c35bb48b56c69e61e5d15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  populationValue: 5
+  populationCapacity: 10
+  woodValue: 0
+  stoneValue: 0
+  foodValue: 0
   consumptionRate: 10
   prepDuration: 0
   winterDuration: 0
   Winter: 0
   clone: {fileID: 0}
-  storage: {fileID: 0}
   building: 0
+  resourceDisplays: []
 --- !u!1001 &269014805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -694,6 +699,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280954406}
   m_CullTransparentMesh: 0
+--- !u!114 &507198097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1721472443642186418, guid: 56eaca2cbdff7874ebdf45a6e639455b,
+    type: 3}
+  m_PrefabInstance: {fileID: 269014805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,13 +822,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669cd80b36bfa2244a0c811da10aafaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  populationValue: 5
+  populationCapacity: 10
+  woodValue: 0
+  stoneValue: 0
+  foodValue: 0
   consumptionRate: 10
   prepDuration: 0
   winterDuration: 0
   Winter: 0
-  clone: {fileID: 0}
-  storage: {fileID: 0}
+  clone: {fileID: 1681453484}
   building: 0
+  resourceDisplays:
+  - {fileID: 1241983148}
+  - {fileID: 507198097}
+  - {fileID: 631603080}
+  - {fileID: 539384198}
+--- !u!114 &539384198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1721472443642186418, guid: 56eaca2cbdff7874ebdf45a6e639455b,
+    type: 3}
+  m_PrefabInstance: {fileID: 590554246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &590554246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -918,6 +956,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 590554246}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &631603080 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1721472443642186418, guid: 56eaca2cbdff7874ebdf45a6e639455b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1319044589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &748954450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1157,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 241902720}
+      - m_Target: {fileID: 534669907}
         m_MethodName: CreateBuilding
         m_Mode: 2
         m_Arguments:
@@ -1505,6 +1555,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168113821}
   m_CullTransparentMesh: 0
+--- !u!114 &1241983148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1721472443642186418, guid: 56eaca2cbdff7874ebdf45a6e639455b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1666846614}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1319044589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1708,7 +1770,7 @@ GameObject:
   - component: {fileID: 1602593709}
   - component: {fileID: 1602593708}
   - component: {fileID: 1602593707}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Storehouse
   m_TagString: Storehouse
   m_Icon: {fileID: 0}
@@ -2075,7 +2137,7 @@ GameObject:
   - component: {fileID: 1681453487}
   - component: {fileID: 1681453486}
   - component: {fileID: 1681453485}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Town Hall
   m_TagString: Town Hall
   m_Icon: {fileID: 0}
@@ -2234,7 +2296,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 241902720}
+      - m_Target: {fileID: 534669907}
         m_MethodName: CreateBuilding
         m_Mode: 2
         m_Arguments:
@@ -2367,7 +2429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736797517}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Buildings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
