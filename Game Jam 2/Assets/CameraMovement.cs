@@ -13,8 +13,8 @@ public class CameraMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        boundX = Screen.width - 50;
-        boundY = Screen.height - 50;
+        boundX = Screen.width - 30;
+        boundY = Screen.height - 30;
         Debug.Log(Input.mousePosition);
         Debug.Log(boundX);
         Debug.Log(boundY);
@@ -27,7 +27,7 @@ public class CameraMovement : MonoBehaviour
         {
             transform.position += new Vector3(speed,0.0f, 0.0f);
         }
-        else if (mousePos.x < 50)
+        else if (mousePos.x < 30)
         {
             transform.position -= new Vector3(speed, 0.0f, 0.0f);
         }
@@ -35,7 +35,7 @@ public class CameraMovement : MonoBehaviour
         {
             transform.position += new Vector3(0.0f,0.0f, speed);
         }
-        else if (mousePos.y < 50)
+        else if (mousePos.y < 30)
         {
             transform.position -= new Vector3(0.0f, 0.0f, speed);
         }
