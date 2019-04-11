@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -16,12 +17,15 @@ public class Player : MonoBehaviour
     public int winterDuration;
     public bool Winter;
     public GameObject clone;
+    public GameObject townHall;
     public bool building;
     public Text[] resourceDisplays;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        
         resourceDisplays[0].text = woodValue.ToString();
         resourceDisplays[1].text = stoneValue.ToString();
         resourceDisplays[2].text = foodValue.ToString();
@@ -36,7 +40,7 @@ public class Player : MonoBehaviour
 
     private void Spawn()
     {
-        Instantiate(GameObject.FindGameObjectWithTag("Villager"), GameObject.FindGameObjectWithTag("Town Hall").transform);
+        Instantiate(GameObject.FindGameObjectWithTag("Villager"), (townHall.transform.position + new Vector3(0,0,-1)), townHall.transform.rotation);
     }
 
     // Update is called once per frame
@@ -70,17 +74,14 @@ public class Player : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 temp;
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100f, 9))
+            if (Physics.Raycast(ray, out hit, 100f))
             {
                 temp = hit.point;
             }
-            if(hit.collider.tag == "Villager")
+            Debug.Log(hit.collider.name);
+            if (hit.collider.tag == "Villager")
             {
-//                Select(hit.collider.gameObject);
-            }
-            else
-            {
-                Debug.Log(hit.collider.name);
+                VillagerAI.Select();
             }
         }
     }
@@ -96,7 +97,7 @@ public class Player : MonoBehaviour
     }
     public void Place(GameObject gameObject)
     {
-        Instantiate(clone, clone.transform.position, clone.transform.rotation);
+        Instantiate(clone, townHall.transform.position+ new Vector3(0,0,-1), townHall.transform.rotation);
         Debug.Log(clone.tag);
         if(clone.tag == "Cottage")
         {
@@ -109,6 +110,11 @@ public class Player : MonoBehaviour
         // Deduct resources
         building = false;
         clone.SetActive(false);
+        ResetMesh();
+    }
+    public void ResetMesh()
+    {
+
     }
     public void ChangeWood(int value)
     {
