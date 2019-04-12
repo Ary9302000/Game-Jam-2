@@ -6,11 +6,12 @@ using UnityEngine.AI;
 
 public class VillagerAI : MonoBehaviour
 {
+
     private NavMeshAgent navmesh;
-    private Vector3 target;
+    public Vector3 target;
     public Vector3 myPos;
     public float speed = 5;
-    public static bool selected = false;
+    public bool selected = false;
     public int gatherRate = 5;
     public int gatherMax = 50;
     public string resource;
@@ -41,17 +42,17 @@ public class VillagerAI : MonoBehaviour
                     target = temp;
                 }
                 navmesh.SetDestination(target);
-                Select();
+                Select(gameObject);
             }
             if (Input.GetMouseButtonDown(1))
             {
-                Select();
+                Select(gameObject);
             }
     }
 }
 
-    public static void Select()
+    public static void Select(GameObject gb)
     {
-        selected = !selected;
+        gb.GetComponent<VillagerAI>().selected = !gb.GetComponent<VillagerAI>().selected;
     }
 }
