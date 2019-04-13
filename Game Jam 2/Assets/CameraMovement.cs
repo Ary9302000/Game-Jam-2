@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour
     public float boundX;
     public float boundY;
     private Vector2 mousePos;
-    float speed = 0.1f;
+    float speed = 0.25f;
 
     // Use this for initialization
     void Start()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Resource : MonoBehaviour
 {
     public int startValue;
-    public int value;
+    public float value;
 
     // Start is called before the first frame update
     void Start()
@@ -13,9 +13,16 @@ public class Resource : MonoBehaviour
         value = startValue = 250;
     }
 
+    public void ChangeResource(float val)
+    {
+        value -= val;
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if(value < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

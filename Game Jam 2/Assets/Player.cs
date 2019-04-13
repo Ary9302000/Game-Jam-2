@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
-    public NavMeshSurface surface;
+//    public NavMeshSurface surface;
     public int populationValue = 5;
     public int populationCapacity = 10;
     public int woodValue = 0;
@@ -18,29 +18,45 @@ public class Player : MonoBehaviour
     public bool Winter;
     public GameObject clone;
     public GameObject townHall;
+    public GameObject villager;
     public bool building;
     public Text[] resourceDisplays;
-    
+    List<GameObject> pooledObjects;
 
     // Start is called before the first frame update
     void Start()
     {
-        surface.BuildNavMesh();
+//        surface.BuildNavMesh();
         resourceDisplays[0].text = woodValue.ToString();
         resourceDisplays[1].text = stoneValue.ToString();
         resourceDisplays[2].text = foodValue.ToString();
         resourceDisplays[3].text = populationValue.ToString() + "/" + populationCapacity.ToString();
-        int i = 5;
-        while (i > 0)
+        pooledObjects = new List<GameObject>();
+        for (int i = 0; i < populationCapacity; i++)
         {
-            Spawn(i);
-            i--;
+            GameObject obj = Instantiate(villager);
+            obj.SetActive(false);
+            pooledObjects.Add(obj);
+        }
+        int index = 5;
+        while (index > 0)
+        {
+            Spawn(index);
+            index--;
         }
     }
 
-    private void Spawn(int i)
+    public void Spawn(int j)
     {
-        Instantiate(GameObject.FindGameObjectWithTag("Villager"), (townHall.transform.position + new Vector3(i-2,-0.25f,-1)), townHall.transform.rotation);
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            if (!pooledObjects[i].activeInHierarchy)
+            {
+                pooledObjects[i].SetActive(true);
+                pooledObjects[i].transform.position = townHall.transform.position + new Vector3(j - 2, -0.25f, -1);
+                return;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -54,7 +70,7 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100f, 9))
             {
                 temp = hit.point;
-                clone.transform.position = temp + new Vector3(0,0.5f,0);
+                clone.transform.position = temp;
                 clone.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
             }
             if (Input.GetMouseButtonDown(0))
@@ -74,7 +90,7 @@ public class Player : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 temp;
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100f))
+            if (Physics.Raycast(ray, out hit))
             {
                 temp = hit.point;
             }
@@ -88,7 +104,6 @@ public class Player : MonoBehaviour
 
     public void CreateBuilding(GameObject gameObject)
     {
-
         clone = gameObject;
         clone.SetActive(true);
         Debug.Log(clone.name);
@@ -134,6 +149,12 @@ public class Player : MonoBehaviour
     public void ChangePopulationCap(int value)
     {
         populationCapacity += value;
+        for (int i = 0; i < value; i++)
+        {
+            GameObject obj = Instantiate(villager);
+            obj.SetActive(false);
+            pooledObjects.Add(obj);
+        }
         resourceDisplays[3].text = populationValue.ToString() + "/" + populationCapacity.ToString();
     }
     public void ChangePopulation(int value)
