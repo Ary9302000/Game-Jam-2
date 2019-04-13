@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class Player : MonoBehaviour
 {
 //    public NavMeshSurface surface;
-    public int populationValue = 5;
+    public int populationValue = 0;
     public int populationCapacity = 10;
     public int woodValue = 0;
     public int stoneValue = 0;
@@ -46,6 +46,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Train(GameObject villager)
+    {
+        var script = villager.GetComponent<Building>();
+        if(foodValue< script.GetFCost())
+        {
+            Debug.Log("not enough resources");
+        }
+        else
+        {
+            Spawn(1);
+        }
+    }
     public void Spawn(int j)
     {
         for (int i = 0; i < pooledObjects.Count; i++)
@@ -54,6 +66,7 @@ public class Player : MonoBehaviour
             {
                 pooledObjects[i].SetActive(true);
                 pooledObjects[i].transform.position = townHall.transform.position + new Vector3(j - 2, -0.25f, -1);
+                ChangePopulation(1);
                 return;
             }
         }
@@ -75,6 +88,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log(clone.transform.position);
                 Place(clone);
                 Debug.Log("Placing");
             }
@@ -112,6 +126,16 @@ public class Player : MonoBehaviour
     }
     public void Place(GameObject gameObject)
     {
+        var script = gameObject.GetComponent<Building>();
+        if(woodValue < script.GetWCost() || stoneValue < script.GetSCost())
+        {
+            Debug.Log("not enough resources");
+            building = false;
+            clone.SetActive(false);
+            return;
+        }
+        ChangeWood(-script.GetWCost());
+        ChangeStone(-script.GetSCost());
         Instantiate(clone);
         Debug.Log(clone.tag);
         if(clone.tag == "Cottage")
@@ -122,15 +146,11 @@ public class Player : MonoBehaviour
         {
             consumptionRate -= 0.5f;
         }
-        // Deduct resources
         building = false;
         clone.SetActive(false);
-        ResetMesh();
+
     }
-    public void ResetMesh()
-    {
-//        surface.BuildNavMesh();
-    }
+
     public void ChangeWood(int value)
     {
         woodValue += value;
